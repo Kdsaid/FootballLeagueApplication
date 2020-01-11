@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_destination">
+
+    <fragment
+        android:id="@+id/home_destination"
+        android:name="com.example.footballleagueapplication.view.fragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/home_fragment">
+
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/about_destination" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/about_destination"
+        android:name="com.example.footballleagueapplication.view.fragment.AboutFragment"
+
+        android:label="About"
+        tools:layout="@layout/fragment_about">
+        <argument
+            android:name="leagueId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/details_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/details_destination"
+        android:name="com.example.footballleagueapplication.view.fragment.DetailsFragment"
+
+        android:label="Details"
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="playerId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+</navigation>

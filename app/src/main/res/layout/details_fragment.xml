@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.DetailsFragment">
+
+
+    <TextView
+        android:id="@+id/tvTeamName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:padding="4dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        bind:layout_constraintEnd_toEndOf="parent"
+        bind:layout_constraintHorizontal_bias="1.0"
+        bind:layout_constraintStart_toStartOf="parent"
+        bind:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTeamName"
+        android:padding="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        bind:layout_constraintEnd_toEndOf="@+id/tvTeamName"
+        bind:layout_constraintHorizontal_bias="1.0"
+        bind:layout_constraintStart_toStartOf="@+id/tvTeamName"
+        bind:layout_constraintTop_toBottomOf="@+id/tvTeamName" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvAddress"
+        android:padding="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        bind:layout_constraintEnd_toEndOf="@+id/tvAddress"
+        bind:layout_constraintHorizontal_bias="1.0"
+        bind:layout_constraintStart_toStartOf="@+id/tvAddress"
+        bind:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPhone"
+        android:padding="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        bind:layout_constraintEnd_toEndOf="@+id/tvPhone"
+        bind:layout_constraintHorizontal_bias="1.0"
+        bind:layout_constraintStart_toStartOf="@+id/tvPhone"
+        bind:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+    <TextView
+        android:id="@+id/tvClubColors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEmail"
+        android:padding="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        bind:layout_constraintEnd_toEndOf="@+id/tvEmail"
+        bind:layout_constraintHorizontal_bias="1.0"
+        bind:layout_constraintStart_toStartOf="@+id/tvEmail"
+        bind:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+    <TextView
+        android:id="@+id/tvVenue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvClubColors"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        bind:layout_constraintEnd_toEndOf="@+id/tvClubColors"
+        bind:layout_constraintHorizontal_bias="1.0"
+        bind:layout_constraintStart_toStartOf="@+id/tvClubColors"
+        bind:layout_constraintTop_toBottomOf="@+id/tvClubColors" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/tvVenue"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        bind:layout_constraintEnd_toEndOf="@+id/tvVenue"
+        bind:layout_constraintStart_toStartOf="@+id/tvVenue"
+        bind:layout_constraintTop_toBottomOf="@+id/tvVenue" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_team_player"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:divider="@null"
+        android:orientation="vertical"
+        android:padding="4dp"
+        bind:layout_constraintEnd_toEndOf="parent"
+        bind:layout_constraintStart_toStartOf="parent"
+        bind:layout_constraintTop_toBottomOf="@+id/logo" />
+    <include
+        layout="@layout/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.40" />
+</androidx.constraintlayout.widget.ConstraintLayout>
