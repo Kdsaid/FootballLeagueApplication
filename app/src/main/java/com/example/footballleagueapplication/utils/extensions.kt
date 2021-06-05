@@ -35,13 +35,15 @@ fun View.hide() {
 }
 
 fun ImageView.loadImage(url: String) {
-    Glide.with(this).load(url).placeholder(getCircularProgressDrawable(this.rootView.context))
+    Glide.with(this).
+    load(url).
+    placeholder(this.rootView.context.getCircularProgressDrawable())
         .into(this)
 }
 
 
-fun getCircularProgressDrawable(view: Context): CircularProgressDrawable? {
-    val circularProgressDrawable = CircularProgressDrawable(view)
+fun Context.getCircularProgressDrawable(): CircularProgressDrawable? {
+    val circularProgressDrawable = CircularProgressDrawable(this)
     circularProgressDrawable.strokeWidth = 5f
     circularProgressDrawable.centerRadius = 30f
     //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
