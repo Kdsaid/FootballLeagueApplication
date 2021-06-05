@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.footballleague.data.network.responses.team_details_model.Squad
-import com.example.footballleague.data.network.responses.team_details_model.TeamDetailsModels
+import com.example.footballleagueapplication.data.models.team_details_model.Squad
+import com.example.footballleagueapplication.data.models.team_details_model.TeamDetailsModels
 import com.example.footballleagueapplication.R
-import com.example.footballleagueapplication.hide
-import com.example.footballleagueapplication.loadImage
-import com.example.footballleagueapplication.show
+import com.example.footballleagueapplication.utils.*
 import com.example.footballleagueapplication.view.adapter.TeamPlayerAdapter
 import com.example.footballleagueapplication.view.view_model.TeamDetailsViewModel
 import com.google.gson.Gson
@@ -48,16 +46,24 @@ class DetailsFragment : Fragment() {
 
     private fun displayHomeData(leagueId: Int) {
         progressBar.show()
-        val teamDetailsViewModel = ViewModelProvider(this).get(TeamDetailsViewModel::class.java)
+        val teamDetailsViewModel = ViewModelProvider(requireActivity()).get(TeamDetailsViewModel::class.java)
         activity?.let {
-            teamDetailsViewModel.getDetailsTeam(leagueId)
-                .observe(it, Observer<TeamDetailsModels> { teamDetails ->
-                    setAdsData(teamDetails)
+            teamDetailsViewModel.getTeamDetails(leagueId).observe(requireActivity(), Observer {
+                when (it.status) {
+                    Status.SUCCESS -> it.data?.let { getData ->
+                        progressBar.hide()
+                        setAdsData(getData)
 
-
-                    Log.e("sadsad", "" + Gson().toJson(teamDetails))
-                })
-            progressBar.hide()
+                    }
+                    Status.ERROR -> {
+                        progressBar.hide()
+                        context?.toast("Something went wrong, try later")
+                    }
+                    Status.LOADING -> {
+                        progressBar.show()
+                    }
+                }
+            })
         }
     }
 

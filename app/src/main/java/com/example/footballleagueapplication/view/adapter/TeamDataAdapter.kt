@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballleagueapplication.R
-import com.example.footballleagueapplication.data.network.responses.teams_model.Team
-import com.example.footballleagueapplication.toast
+import com.example.footballleagueapplication.data.models.teams_model.Team
 import com.example.footballleagueapplication.view.fragment.AboutFragmentDirections
-import com.example.footballleagueapplication.view.fragment.HomeFragmentDirections
 import kotlinx.android.synthetic.main.team_item_row.view.*
 import kotlinx.android.synthetic.main.team_item_row.view.cvTeam
 import kotlinx.android.synthetic.main.team_item_row.view.tvTeamName
-import kotlinx.android.synthetic.main.teams_item_row.view.*
 
 
 class TeamDataAdapter(teams: ArrayList<Team>, context: Context) :

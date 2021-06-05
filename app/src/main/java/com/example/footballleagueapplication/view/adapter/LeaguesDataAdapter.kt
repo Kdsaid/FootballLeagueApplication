@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballleagueapplication.R
-import com.example.footballleagueapplication.data.network.responses.leagues_model.Competition
-import com.example.footballleagueapplication.toast
+import com.example.footballleagueapplication.data.models.leagues_model.Competition
 import com.example.footballleagueapplication.view.fragment.HomeFragmentDirections
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.teams_item_row.view.*

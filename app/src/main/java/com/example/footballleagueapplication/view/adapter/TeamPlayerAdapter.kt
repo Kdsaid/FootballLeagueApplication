@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footballleague.data.network.responses.team_details_model.Squad
+import com.example.footballleagueapplication.data.models.team_details_model.Squad
 import com.example.footballleagueapplication.R
 import kotlinx.android.synthetic.main.team_player_item_row.view.*
 

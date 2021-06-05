@@ -1,26 +1,26 @@
 package com.example.footballleagueapplication.view.view_model
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.footballleagueapplication.data.network.responses.leagues_model.Competition
-import com.example.footballleagueapplication.data.repositories.LeaguesRepository
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.liveData
+import com.example.footballleagueapplication.data.api.ApiHelper
+import com.example.footballleagueapplication.data.api.RetrofitBuilder
+import com.example.footballleagueapplication.data.api.repository.MainRepository
+import com.example.footballleagueapplication.utils.Resource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 
 class LeaguesViewModel : ViewModel() {
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val repository = MainRepository(ApiHelper(RetrofitBuilder.apiService))
 
-    private var leaguesRepository: LeaguesRepository =
-        LeaguesRepository()
 
-    fun getAllTeam(): LiveData<List<Competition>> {
-        return leaguesRepository.getMutableLiveData(coroutineScope)
+    fun getLeagues(
+
+    ) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(repository.leagues()))
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+        }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 }
