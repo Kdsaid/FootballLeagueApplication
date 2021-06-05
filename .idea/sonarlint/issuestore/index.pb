@@ -1,6 +1,4 @@
 
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 â
 Yapp/src/main/java/com/example/footballleagueapplication/data/models/leagues_model/Area.kt,f\c\fcfb9b6405b0a2be39d2abff0ada177b32bee48b
 ê
@@ -29,8 +27,6 @@ Wapp/src/main/java/com/example/footballleagueapplication/data/models/teams_model
 Yapp/src/main/java/com/example/footballleagueapplication/data/models/teams_model/Winner.kt,9\f\9ff011f19b9b0bcfb395ae362ac1d991d90515fa
 {
 Kapp/src/main/java/com/example/footballleagueapplication/utils/extensions.kt,9\8\98a35a7d2b8221ee8f572c849f02f2d007abe933
-w
-Gapp/src/main/java/com/example/footballleagueapplication/utils/Status.kt,6\6\66408757afe40bb44fe84dd661d1c4e0aa764a5b
 ë
 aapp/src/main/java/com/example/footballleagueapplication/data/models/leagues_model/LeaguesModel.kt,6\8\682123bd6c6365d5fee5453daef83f6c0ac79a24
 @

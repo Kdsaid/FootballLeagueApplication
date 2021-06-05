@@ -1,4 +1,4 @@
-package com.example.footballleagueapplication.view.adapter
+package com.example.footballleagueapplication.ui.about
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.data.models.teams_model.Team
-import com.example.footballleagueapplication.view.fragment.AboutFragmentDirections
 import kotlinx.android.synthetic.main.team_item_row.view.*
 import kotlinx.android.synthetic.main.team_item_row.view.cvTeam
 import kotlinx.android.synthetic.main.team_item_row.view.tvTeamName

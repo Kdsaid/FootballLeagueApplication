@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home_destination"
-        android:name="com.example.footballleagueapplication.view.fragment.HomeFragment"
+        android:name="com.example.footballleagueapplication.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/home_fragment">
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/about_destination"
-        android:name="com.example.footballleagueapplication.view.fragment.AboutFragment"
+        android:name="com.example.footballleagueapplication.ui.about.AboutFragment"
 
         android:label="About"
         tools:layout="@layout/fragment_about">
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/details_destination"
-        android:name="com.example.footballleagueapplication.view.fragment.DetailsFragment"
+        android:name="com.example.footballleagueapplication.ui.details.DetailsFragment"
 
         android:label="Details"
         tools:layout="@layout/details_fragment">

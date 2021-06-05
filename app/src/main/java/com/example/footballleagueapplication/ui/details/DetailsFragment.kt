@@ -1,10 +1,7 @@
-package com.example.footballleagueapplication.view.fragment
+package com.example.footballleagueapplication.ui.details
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,25 +9,12 @@ import com.example.footballleagueapplication.data.models.team_details_model.Squa
 import com.example.footballleagueapplication.data.models.team_details_model.TeamDetailsModels
 import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.utils.*
-import com.example.footballleagueapplication.view.adapter.TeamPlayerAdapter
-import com.example.footballleagueapplication.view.view_model.TeamDetailsViewModel
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.details_fragment.*
 import kotlinx.android.synthetic.main.loader.*
 
-class DetailsFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.details_fragment, container, false)
-    }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+class DetailsFragment : Fragment(R.layout.details_fragment) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
             val safeArgs =
@@ -46,7 +30,8 @@ class DetailsFragment : Fragment() {
 
     private fun displayHomeData(leagueId: Int) {
         progressBar.show()
-        val teamDetailsViewModel = ViewModelProvider(requireActivity()).get(TeamDetailsViewModel::class.java)
+        val teamDetailsViewModel =
+            ViewModelProvider(requireActivity()).get(TeamDetailsViewModel::class.java)
         activity?.let {
             teamDetailsViewModel.getTeamDetails(leagueId).observe(requireActivity(), Observer {
                 when (it.status) {

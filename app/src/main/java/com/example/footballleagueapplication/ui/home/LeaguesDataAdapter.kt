@@ -1,7 +1,6 @@
-package com.example.footballleagueapplication.view.adapter
+package com.example.footballleagueapplication.ui.home
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.data.models.leagues_model.Competition
-import com.example.footballleagueapplication.view.fragment.HomeFragmentDirections
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.teams_item_row.view.*
 import kotlin.collections.ArrayList
 
@@ -37,18 +34,10 @@ class LeaguesDataAdapter(teams: List<Competition>?, context: Context) :
 
     override fun onBindViewHolder(holder: TeamHolder, postion: Int) {
 
-        Log.d("asdasd", "dsasa" + teams?.size)
-
         holder.bind(teams?.get(postion))
 
     }
 
-//
-//    fun setTeamList(teams: ArrayList<Team>, context: TeamsActivity) {
-//        this.teams = teams
-//        notifyDataSetChanged()
-//        this.context = context
-//    }
 
     override fun getItemCount() = teams?.size ?: 0
 
@@ -64,7 +53,6 @@ class LeaguesDataAdapter(teams: List<Competition>?, context: Context) :
 
             }
 
-            Log.i("DSAD", "" + Gson().toJson(get))
         }
     }
 

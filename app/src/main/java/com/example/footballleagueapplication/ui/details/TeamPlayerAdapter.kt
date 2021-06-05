@@ -1,4 +1,4 @@
-package com.example.footballleagueapplication.view.adapter
+package com.example.footballleagueapplication.ui.details
 
 import android.content.Context
 import android.view.LayoutInflater
