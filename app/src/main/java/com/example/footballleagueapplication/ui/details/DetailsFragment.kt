@@ -63,10 +63,10 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
 
 
         rv_team_player.apply {
-            adapter = activity?.let {
-                TeamPlayerAdapter((teamDetails.squad as ArrayList<Squad>), it)
+            adapter =
+                TeamPlayerAdapter((teamDetails.squad as ArrayList<Squad>))
 
-            }
+
         }
     }
 }

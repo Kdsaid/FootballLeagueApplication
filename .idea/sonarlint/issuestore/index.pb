@@ -25,8 +25,6 @@ Wapp/src/main/java/com/example/footballleagueapplication/data/models/teams_model
 ]app/src/main/java/com/example/footballleagueapplication/data/models/teams_model/TeemsModel.kt,0\6\06a96b974a490d35a87551e1b0e800b0805528d5
 ‰
 Yapp/src/main/java/com/example/footballleagueapplication/data/models/teams_model/Winner.kt,9\f\9ff011f19b9b0bcfb395ae362ac1d991d90515fa
-{
-Kapp/src/main/java/com/example/footballleagueapplication/utils/extensions.kt,9\8\98a35a7d2b8221ee8f572c849f02f2d007abe933
 ‘
 aapp/src/main/java/com/example/footballleagueapplication/data/models/leagues_model/LeaguesModel.kt,6\8\682123bd6c6365d5fee5453daef83f6c0ac79a24
 @

@@ -1,45 +1,33 @@
 package com.example.footballleagueapplication.ui.details
 
-import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footballleagueapplication.data.models.team_details_model.Squad
 import com.example.footballleagueapplication.R
+import com.example.footballleagueapplication.data.models.team_details_model.Squad
+import com.example.footballleagueapplication.utils.inflate
 import kotlinx.android.synthetic.main.team_player_item_row.view.*
 
 
-class TeamPlayerAdapter(private var  squad: List<Squad>?, private val  context: Context) :
-    RecyclerView.Adapter<TeamPlayerAdapter.TeamHolder>() {
+class TeamPlayerAdapter(private var  squad: List<Squad>?) :
+    RecyclerView.Adapter<TeamPlayerAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, i: Int): TeamHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.team_player_item_row,
-            parent, false
-        )
-
-        return TeamHolder(itemView)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder =
+        ViewHolder(parent.inflate(R.layout.team_player_item_row))
 
 
-    override fun onBindViewHolder(holder: TeamHolder, postion: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, postion: Int) {
         val squad = squad?.get(postion)
         squad?.let { holder.bind(it) }
     }
 
 
-
     override fun getItemCount() = squad?.size ?: 0
 
-    inner class TeamHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(squad: Squad) {
-            itemView.tvPlayer.text=squad.name
-
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(it: Squad) {
+            itemView.tvPlayer.text=it.name
         }
-
-
     }
-
 
 }

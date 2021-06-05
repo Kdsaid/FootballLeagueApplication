@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.data.models.teams_model.Team
 import com.example.footballleagueapplication.utils.Status
@@ -52,9 +53,13 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
     private fun setAdsData(teamDetails: List<Team>?) {
 
         rv_team.apply {
-            adapter = activity?.let {
-                TeamDataAdapter((teamDetails as ArrayList<Team>), it)
-            }
+            adapter =
+                TeamDataAdapter((teamDetails as ArrayList<Team>)) { view, id ->
+                    val nextAction = AboutFragmentDirections.nextAction()
+                    nextAction.playerId = id
+                    Navigation.findNavController(view).navigate(nextAction)
+
+                }
         }
 
     }
