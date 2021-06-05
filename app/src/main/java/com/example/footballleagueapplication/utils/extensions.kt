@@ -4,12 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.*
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.example.footballleagueapplication.R
 
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
@@ -47,7 +51,12 @@ fun getCircularProgressDrawable(view: Context): CircularProgressDrawable? {
     return circularProgressDrawable
 }
 
-
+fun RecyclerView.animateItems() {
+    layoutAnimation = AnimationUtils.loadLayoutAnimation(
+        this.context,
+        R.anim.layout_animation_fall_down
+    ) as LayoutAnimationController
+}
 fun AppCompatActivity.scrollable() {
     requestWindowFeature(Window.FEATURE_NO_TITLE)
     window.setSoftInputMode(
@@ -76,6 +85,7 @@ fun Context.goTo(dest: AppCompatActivity, name: String = "", value: String = "")
         intent.type = "text/plain"
         startActivity(Intent.createChooser(intent, ""))
     }
+
 
 }
 

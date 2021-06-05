@@ -8,10 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.data.models.leagues_model.Competition
-import com.example.footballleagueapplication.utils.Status
-import com.example.footballleagueapplication.utils.hide
-import com.example.footballleagueapplication.utils.show
-import com.example.footballleagueapplication.utils.toast
+import com.example.footballleagueapplication.utils.*
+
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.loader.*
 
@@ -46,14 +44,19 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private fun setAdsData(competition: List<Competition>?) {
         leaguesRecycler.apply {
+
             adapter = LeaguesDataAdapter(competition) { view, id ->
                 val nextAction = HomeFragmentDirections.nextAction()
                 nextAction.leagueId = id
                 Navigation.findNavController(view).navigate(nextAction)
             }
+            animateItems()
+            scheduleLayoutAnimation()
         }
     }
 }
+
+
 
 
 
