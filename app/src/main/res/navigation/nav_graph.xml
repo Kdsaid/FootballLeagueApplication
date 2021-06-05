@@ -14,7 +14,12 @@
 
         <action
             android:id="@+id/next_action"
-            app:destination="@+id/about_destination" />
+            app:destination="@+id/about_destination"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            />
     </fragment>
 
     <fragment
@@ -28,6 +33,10 @@
             android:defaultValue="0"
             app:argType="integer" />
         <action
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
             android:id="@+id/next_action"
             app:destination="@+id/details_destination" />
     </fragment>

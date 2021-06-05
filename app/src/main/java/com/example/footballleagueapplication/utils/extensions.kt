@@ -37,7 +37,7 @@ fun View.hide() {
 fun ImageView.loadImage(url: String) {
     Glide.with(this).
     load(url).
-    placeholder(this.rootView.context.getCircularProgressDrawable())
+    placeholder(rootView.context.getCircularProgressDrawable())
         .into(this)
 }
 
