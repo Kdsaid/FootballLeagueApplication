@@ -8,19 +8,19 @@ class AppConfig : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
     }
 
 
     init {
         instance = this
     }
+
     companion object {
         var instance: AppConfig? = null
             internal set
-        fun hasNetwork(): Boolean {
-            return instance!!.isNetworkConnected()
-        }
 
+        fun hasNetwork() = instance!!.isNetworkConnected()
     }
 
     private fun isNetworkConnected(): Boolean {

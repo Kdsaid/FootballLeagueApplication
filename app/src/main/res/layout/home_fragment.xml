@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
+        android:id="@+id/loader"
         layout="@layout/loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

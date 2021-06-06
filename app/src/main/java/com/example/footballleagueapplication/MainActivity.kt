@@ -4,15 +4,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.*
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.footballleagueapplication.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-
-
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         val navController = Navigation.findNavController(
@@ -22,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
 
 
-        toolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
         // This will handle back actions initiated by the the back arrow
         // at the start of the toolbar.
-        toolbar.setNavigationOnClickListener {
+       binding.toolbar.setNavigationOnClickListener {
             // Handle the back button event and return to override
             // the default behavior the same way as the OnBackPressedCallback.
             // TODO(reason: handle custom back behavior here if desired.)
@@ -34,6 +35,15 @@ class MainActivity : AppCompatActivity() {
             navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
         }
     }
+    override fun onDestroy() {
+        _binding = null
+
+        super.onDestroy()
+
+    }
+
+
+
 }
 
 

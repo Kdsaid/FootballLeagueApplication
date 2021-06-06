@@ -103,7 +103,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_team_player"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -111,11 +110,14 @@
         android:divider="@null"
         android:orientation="vertical"
         android:padding="4dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        bind:layout_constraintBottom_toBottomOf="parent"
         bind:layout_constraintEnd_toEndOf="parent"
         bind:layout_constraintStart_toStartOf="parent"
         bind:layout_constraintTop_toBottomOf="@+id/logo" />
     <include
         layout="@layout/loader"
+        android:id="@+id/loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

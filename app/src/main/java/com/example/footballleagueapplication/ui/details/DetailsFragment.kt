@@ -1,18 +1,31 @@
 package com.example.footballleagueapplication.ui.details
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.footballleagueapplication.data.models.team_details_model.Squad
 import com.example.footballleagueapplication.data.models.team_details_model.TeamDetailsModels
-import com.example.footballleagueapplication.R
+import com.example.footballleagueapplication.databinding.DetailsFragmentBinding
 import com.example.footballleagueapplication.utils.*
-import kotlinx.android.synthetic.main.details_fragment.*
-import kotlinx.android.synthetic.main.loader.*
 
-class DetailsFragment : Fragment(R.layout.details_fragment) {
+class DetailsFragment : Fragment() {
+    private var _binding: DetailsFragmentBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+
+        _binding = DetailsFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -29,23 +42,22 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
     }
 
     private fun displayHomeData(leagueId: Int) {
-        progressBar.show()
         val teamDetailsViewModel =
             ViewModelProvider(requireActivity()).get(TeamDetailsViewModel::class.java)
         activity?.let {
-            teamDetailsViewModel.getTeamDetails(leagueId).observe(requireActivity(), Observer {
+            teamDetailsViewModel.getTeamDetails(leagueId).observe(requireActivity(), {
                 when (it.status) {
                     Status.SUCCESS -> it.data?.let { getData ->
-                        progressBar.hide()
+                        binding.loader.progressBar.hide()
                         setAdsData(getData)
 
                     }
                     Status.ERROR -> {
-                        progressBar.hide()
+                        binding.loader.progressBar.hide()
                         context?.toast("Something went wrong, try later")
                     }
                     Status.LOADING -> {
-                        progressBar.show()
+                        binding.loader.progressBar.show()
                     }
                 }
             })
@@ -53,21 +65,22 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
     }
 
     private fun setAdsData(teamDetails: TeamDetailsModels?) {
-        tvTeamName.text = teamDetails!!.name
-        tvAddress.text = teamDetails.address
-        tvPhone.text = teamDetails.phone
-        tvEmail.text = teamDetails.email
-        tvClubColors.text = teamDetails.clubColors
-        tvVenue.text = teamDetails.venue
-        logo.loadImage(teamDetails.crestUrl)
-
-
-        rv_team_player.apply {
+        binding.tvTeamName.text = teamDetails!!.name
+        binding.tvAddress.text = teamDetails.address
+        binding.tvPhone.text = teamDetails.phone
+        binding.tvEmail.text = teamDetails.email
+        binding.tvClubColors.text = teamDetails.clubColors
+        binding.tvVenue.text = teamDetails.venue
+        binding.logo.loadImage(teamDetails.crestUrl)
+        binding.rvTeamPlayer.apply {
             adapter =
                 TeamPlayerAdapter((teamDetails.squad as ArrayList<Squad>))
-
-
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
 

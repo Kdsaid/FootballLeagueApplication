@@ -27,11 +27,25 @@ Wapp/src/main/java/com/example/footballleagueapplication/data/models/teams_model
 Yapp/src/main/java/com/example/footballleagueapplication/data/models/teams_model/Winner.kt,9\f\9ff011f19b9b0bcfb395ae362ac1d991d90515fa
 ë
 aapp/src/main/java/com/example/footballleagueapplication/data/models/leagues_model/LeaguesModel.kt,6\8\682123bd6c6365d5fee5453daef83f6c0ac79a24
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 é
 ^app/src/main/java/com/example/footballleagueapplication/data/models/team_details_model/Area.kt,e\1\e13d49a44c31356b271acce52fd38d25c8d8e559
 è
 _app/src/main/java/com/example/footballleagueapplication/data/models/team_details_model/Squad.kt,6\4\64884d4122af86f33d1b397319a8888859262b63
 õ
 kapp/src/main/java/com/example/footballleagueapplication/data/models/team_details_model/TeamDetailsModels.kt,2\0\20084206f79febb8662b7b0a078982b12fe0a146
+{
+Kapp/src/main/java/com/example/footballleagueapplication/utils/extensions.kt,9\8\98a35a7d2b8221ee8f572c849f02f2d007abe933
+z
+Japp/src/test/java/com/example/footballleagueapplication/ExampleUnitTest.kt,9\b\9bc2fe06a12f7df8b4cb982116f13d20a21daf82
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+É
+Sapp/src/main/java/com/example/footballleagueapplication/data/api/RetrofitBuilder.kt,a\c\ac1d93b7d589793a5b5bace810c3db1f3dfcdaab
+|
+Lapp/src/main/java/com/example/footballleagueapplication/configs/AppConfig.kt,1\a\1a8aceeb123ca3d4bee52cab08c334092f2ad63c
+|
+Lapp/src/main/java/com/example/footballleagueapplication/configs/Constants.kt,b\0\b08e8affd1ad5be975cc91c381158097ed474474
+w
+Gapp/src/main/java/com/example/footballleagueapplication/MainActivity.kt,8\9\89be900903f6e4467e9f1f9c15503276f099216d
+ç
+]app/src/main/java/com/example/footballleagueapplication/data/api/repository/MainRepository.kt,7\4\74b015e3e383853e67bb1e6873b3ca2e402790c5

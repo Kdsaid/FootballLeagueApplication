@@ -1,23 +1,28 @@
 package com.example.footballleagueapplication.ui.home
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.data.models.leagues_model.Competition
-import com.example.footballleagueapplication.utils.inflate
-import kotlinx.android.synthetic.main.teams_item_row.view.*
+import com.example.footballleagueapplication.databinding.TeamsItemRowBinding
 
 class LeaguesDataAdapter(private var teams: List<Competition>?,
                          private val itemClick: (View, Int) -> Unit) :
     RecyclerView.Adapter<LeaguesDataAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        position: Int
-    ): ViewHolder =
-        ViewHolder(parent.inflate(R.layout.teams_item_row))
 
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            TeamsItemRowBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
 
 
     override fun onBindViewHolder(holder: ViewHolder, postion: Int) {
@@ -27,9 +32,11 @@ class LeaguesDataAdapter(private var teams: List<Competition>?,
 
     override fun getItemCount() = teams?.size ?: 0
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(private var binding: TeamsItemRowBinding) :
+        RecyclerView.ViewHolder(binding.root){
+
         fun bind(get: Competition?, itemClick: (View, Int) -> Unit) {
-            itemView.tvTeamName.text = get!!.name
+            binding.tvTeamName.text = get!!.name
             itemView.setOnClickListener {
                 itemClick(it,get.id)
             }
