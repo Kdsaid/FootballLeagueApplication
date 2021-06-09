@@ -1,15 +1,9 @@
 package com.example.footballleagueapplication.data.api
 
 import android.util.Log
-import com.example.footballleagueapplication.data.api.ApiService
 import com.example.footballleagueapplication.configs.AppConfig
 import com.example.footballleagueapplication.configs.Constants
-import com.example.footballleagueapplication.configs.Constants.API_KEY
-import com.example.footballleagueapplication.configs.Constants.Accept
-import com.example.footballleagueapplication.configs.Constants.Content_Type
-import com.example.footballleagueapplication.configs.Constants.application_json
 import com.google.gson.Gson
-
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor

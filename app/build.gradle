@@ -33,6 +33,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String','API_KEY',"\"c21f3a0588b847a4a337d1f9c4144e73\""
+    }
 }
 
 dependencies {
@@ -48,9 +52,10 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha01'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha01'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha01'
     // retrofit library
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
