@@ -6,7 +6,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.*
 import com.example.footballleagueapplication.databinding.ActivityMainBinding
 
-
+//
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
