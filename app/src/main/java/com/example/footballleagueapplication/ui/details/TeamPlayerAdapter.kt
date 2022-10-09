@@ -3,13 +3,8 @@ package com.example.footballleagueapplication.ui.details
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footballleagueapplication.R
 import com.example.footballleagueapplication.data.models.team_details_model.Squad
-import com.example.footballleagueapplication.databinding.TeamItemRowBinding
 import com.example.footballleagueapplication.databinding.TeamPlayerItemRowBinding
-import com.example.footballleagueapplication.ui.about.TeamDataAdapter
-import com.example.footballleagueapplication.utils.inflate
-import kotlinx.android.synthetic.main.team_player_item_row.view.*
 
 
 class TeamPlayerAdapter(private var  squad: List<Squad>?) :

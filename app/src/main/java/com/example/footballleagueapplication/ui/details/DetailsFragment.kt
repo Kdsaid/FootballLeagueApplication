@@ -5,7 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.footballleagueapplication.data.api.ApiHelperImpl
+import com.example.footballleagueapplication.data.api.RetrofitBuilder
 import com.example.footballleagueapplication.data.models.team_details_model.Squad
 import com.example.footballleagueapplication.data.models.team_details_model.TeamDetailsModels
 import com.example.footballleagueapplication.databinding.DetailsFragmentBinding
@@ -15,10 +20,10 @@ class DetailsFragment : Fragment() {
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
 
+
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
 
@@ -41,27 +46,34 @@ class DetailsFragment : Fragment() {
 
     }
 
-    private fun displayHomeData(leagueId: Int) {
-        val teamDetailsViewModel =
-            ViewModelProvider(requireActivity()).get(TeamDetailsViewModel::class.java)
-        activity?.let {
-            teamDetailsViewModel.getTeamDetails(leagueId).observe(requireActivity(), {
-                when (it.status) {
-                    Status.SUCCESS -> it.data?.let { getData ->
-                        binding.loader.progressBar.hide()
-                        setAdsData(getData)
+    private fun displayHomeData(playerId: Int) {
+         val teamDetailsViewModel by lazy {
+            ViewModelProvider(
+                this, ViewModelFactory(ApiHelperImpl((RetrofitBuilder.apiService)),  playerId)
+            )[TeamDetailsViewModel::class.java]
+        }
 
-                    }
-                    Status.ERROR -> {
-                        binding.loader.progressBar.hide()
-                        context?.toast("Something went wrong, try later")
-                    }
-                    Status.LOADING -> {
-                        binding.loader.progressBar.show()
+        lifecycleScope.launchWhenStarted {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                teamDetailsViewModel.teamDetails.collect {
+                    when (it.status) {
+                        Status.SUCCESS -> it.data?.let { getData ->
+                            binding.loader.progressBar.hide()
+                            setAdsData(getData)
+
+                        }
+                        Status.ERROR -> {
+                            binding.loader.progressBar.hide()
+                            context?.toast("Something went wrong, try later")
+                        }
+                        Status.LOADING -> {
+                            binding.loader.progressBar.show()
+                        }
                     }
                 }
-            })
+            }
         }
+
     }
 
     private fun setAdsData(teamDetails: TeamDetailsModels?) {
@@ -73,8 +85,7 @@ class DetailsFragment : Fragment() {
         binding.tvVenue.text = teamDetails.venue
         binding.logo.loadImage(teamDetails.crestUrl)
         binding.rvTeamPlayer.apply {
-            adapter =
-                TeamPlayerAdapter((teamDetails.squad as ArrayList<Squad>))
+            adapter = TeamPlayerAdapter((teamDetails.squad as ArrayList<Squad>))
         }
     }
 

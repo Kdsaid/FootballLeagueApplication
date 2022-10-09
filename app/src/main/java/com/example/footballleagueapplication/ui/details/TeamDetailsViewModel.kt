@@ -1,27 +1,40 @@
 package com.example.footballleagueapplication.ui.details
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.footballleagueapplication.data.api.ApiHelper
-import com.example.footballleagueapplication.data.api.RetrofitBuilder
-import com.example.footballleagueapplication.data.api.repository.MainRepository
+import com.example.footballleagueapplication.data.models.leagues_model.LeaguesModel
+import com.example.footballleagueapplication.data.models.team_details_model.TeamDetailsModels
 import com.example.footballleagueapplication.utils.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-class TeamDetailsViewModel : ViewModel() {
-    private val repository = MainRepository(ApiHelper(RetrofitBuilder.apiService))
+class TeamDetailsViewModel(private val repository: ApiHelper, id: Int) : ViewModel() {
+    private val _mutableStateFlow =
+        MutableStateFlow<Resource<TeamDetailsModels>>(Resource.loading(data = null))
+    val teamDetails: StateFlow<Resource<TeamDetailsModels>> = _mutableStateFlow
 
-
-    fun getTeamDetails(
-        id:Int
-
-    ) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(repository.getTeamDetails(id)))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-        }
+    init {
+        getTeamDetails(id = id)
     }
 
+    private fun getTeamDetails(
+        id: Int
+
+    ) {
+        viewModelScope.launch {
+            _mutableStateFlow.value = Resource.loading(data = null)
+            repository.getTeamDetails(id = id).flowOn(Dispatchers.IO).catch { e ->
+                _mutableStateFlow.value = Resource.error(data = null, message = e.toString())
+            }.collect {
+                _mutableStateFlow.value = Resource.success(it)
+            }
+
+        }
+
+
+    }
 }

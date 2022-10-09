@@ -17,10 +17,10 @@ class AppConfig : Application() {
     }
 
     companion object {
-        var instance: AppConfig? = null
+        lateinit var instance: AppConfig
             internal set
 
-        fun hasNetwork() = instance!!.isNetworkConnected()
+        fun hasNetwork() = instance.isNetworkConnected()
     }
 
     private fun isNetworkConnected(): Boolean {
