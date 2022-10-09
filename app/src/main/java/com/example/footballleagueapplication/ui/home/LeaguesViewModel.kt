@@ -1,26 +1,41 @@
 package com.example.footballleagueapplication.ui.home
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.footballleagueapplication.data.api.ApiHelper
-import com.example.footballleagueapplication.data.api.RetrofitBuilder
-import com.example.footballleagueapplication.data.api.repository.MainRepository
+import com.example.footballleagueapplication.data.models.leagues_model.LeaguesModel
 import com.example.footballleagueapplication.utils.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-class LeaguesViewModel : ViewModel() {
-    private val repository = MainRepository(ApiHelper(RetrofitBuilder.apiService))
+class LeaguesViewModel(private val repository: ApiHelper) : ViewModel() {
+    private val _mutableStateFlow =
+        MutableStateFlow<Resource<LeaguesModel>>(Resource.loading(data = null))
+    val leagues: StateFlow<Resource<LeaguesModel>> = _mutableStateFlow
 
-
-    fun getLeagues(
-
-    ) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(repository.leagues()))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-        }
+    init {
+        getLeagues()
     }
 
+    private fun getLeagues() {
+
+
+        viewModelScope.launch {
+            _mutableStateFlow.value = Resource.loading(data = null)
+            repository.leagues().flowOn(Dispatchers.IO).catch { e ->
+                _mutableStateFlow.value = Resource.error(data = null, message = e.toString())
+            }.collect {
+                _mutableStateFlow.value = Resource.success(it)
+            }
+
+        }
+    }
 }
+
+
+
+
+
+
+

@@ -1,16 +1,14 @@
 package com.example.footballleagueapplication.data.api
 
-class ApiHelper(private val apiService: ApiService) {
+import com.example.footballleagueapplication.data.models.leagues_model.LeaguesModel
+import com.example.footballleagueapplication.data.models.team_details_model.TeamDetailsModels
+import com.example.footballleagueapplication.data.models.teams_model.TeemsModel
+import kotlinx.coroutines.flow.Flow
 
+interface ApiHelper {
+    fun leagues(): Flow<LeaguesModel>
 
-    suspend fun leagues(
-    ) = apiService.leagues()
+    fun getTeam(id: Int): Flow<TeemsModel>
 
-    suspend fun getTeam(
-        id: Int
-    ) = apiService.getTeam(id=id)
-    suspend fun getTeamDetails(
-        id: Int
-    ) = apiService.getTeamDetails(id = id)
-
+    fun getTeamDetails(id: Int): Flow<TeamDetailsModels>
 }
