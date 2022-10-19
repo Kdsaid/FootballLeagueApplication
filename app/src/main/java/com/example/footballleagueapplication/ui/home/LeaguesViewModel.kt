@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class LeaguesViewModel(private val repository: ApiHelper) : ViewModel() {
     private val _mutableStateFlow =
-        MutableStateFlow<Resource<LeaguesModel>>(Resource.loading(data = null))
+        MutableStateFlow<Resource<LeaguesModel>>(Resource.loading())
     val leagues: StateFlow<Resource<LeaguesModel>> = _mutableStateFlow
 
     init {
@@ -22,7 +22,7 @@ class LeaguesViewModel(private val repository: ApiHelper) : ViewModel() {
 
 
         viewModelScope.launch {
-            _mutableStateFlow.value = Resource.loading(data = null)
+            _mutableStateFlow.value = Resource.loading()
             repository.leagues().flowOn(Dispatchers.IO).catch { e ->
                 _mutableStateFlow.value = Resource.error(data = null, message = e.toString())
             }.collect {

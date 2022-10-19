@@ -23,7 +23,7 @@ class TeamsViewModel( private val repository: ApiHelper,private val id:Int) : Vi
 
 
     private val _mutableStateFlow =
-        MutableStateFlow<Resource<TeemsModel>>(Resource.loading(data = null))
+        MutableStateFlow<Resource<TeemsModel>>(Resource.loading())
     val team: StateFlow<Resource<TeemsModel>> = _mutableStateFlow
 
     init {
@@ -34,7 +34,7 @@ class TeamsViewModel( private val repository: ApiHelper,private val id:Int) : Vi
 
     ) {
         viewModelScope.launch {
-            _mutableStateFlow.value = Resource.loading(data = null)
+            _mutableStateFlow.value = Resource.loading()
             repository.getTeam(id = id).flowOn(Dispatchers.IO).catch { e ->
                 _mutableStateFlow.value = Resource.error(data = null, message = e.toString())
             }.collect {
